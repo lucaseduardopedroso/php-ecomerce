@@ -1,33 +1,59 @@
+<div class="banner">
+    <?php
+        //Selecionar dados do banner
+        $sql = "select * from banner
+                order by rand() limit 1";
+        
+        //Preparar o SQL para executar
+        $consulta = $pdo->prepare($sql);
+        //Executar o SQL
+        $consulta->execute();
+
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+
+        //Separar o dado necessário
+        $banner = $dados->banner;
+    ?>
+
+    <img src="imagens/<?=$banner?>" alt="Banner">
+</div>
+
 <main>
     <h1>Produtos em Destaque</h1>
     <div class="grid">
-        <?php
-        //selecionar os produtos da vitrine
-        $sql = "select * from produto
-        order by rand() limit 6";
-        //preparar o sql para executar
-        $consulta = $pdo->prepare($sql);
-        //executo o sql
-        $consulta->execute();
+        <?php 
+            //Selecionar os produtos da vitrine
+            $sql = "select * from produto
+                    order by rand() limit 6";
 
-        //separar os dados
-        while ( $dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-            $id = $dados->id;
-            $nome = $dados->nome;
-            $valor = $dados->valor;
-            $imagem1 = $dados->imagem1;
+            //Preparar o SQL para executar
+            $consulta = $pdo->prepare($sql);
+            //Executa o SQL
+            $consulta->execute();
 
-            $valor = number_format($valor,2,",",".");
-            ?>
-            <div class="coluna center">
-                <img src="produtos/<?=$imagem1?>">
-                <h2><?=$nome?></h2>
-                <p class="valor">
-                    R$ <?=$valor?>
-                </p>
-            </div>
-            <?php
-        } //fim do while
+            //Separar os dados
+            while($dados = $consulta->fetch(PDO::FETCH_OBJ)){
+                $id = $dados->id;
+                $nome = $dados->nome;
+                $valor = $dados->valor;
+                $imagem1 = $dados->imagem1;
+
+                //Formata o valor para exibição
+                $valor = number_format($valor,2,",",".");
+                ?>
+                <div class="coluna center">
+                    <img src="produtos/<?=$imagem1?>">
+                    <h2><?=$nome?></h2>
+                    <p class="valor">
+                        R$ <?=$valor?>
+                    </p>
+                    <p>
+                        <a href="produto/<?=$id?>" class="btn">Detalhes</a>
+                    </p>
+                </div>
+
+                <?php
+            } //Fim do while
         ?>
     </div>
 </main>
