@@ -74,10 +74,19 @@ h1{
 }
 
 .coluna h2{
-    height: 5opx;
+    height: 50px;
 }
 
 .coluna .valor{
     color: #920000;
     font-weight: bold;
+}
+
+.grid-produto{
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.grid-produto img{
+    width: 90%;
 }

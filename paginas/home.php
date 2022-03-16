@@ -48,7 +48,7 @@
                         R$ <?=$valor?>
                     </p>
                     <p>
-                        <a href="produto/<?=$id?>" class="btn">Detalhes</a>
+                        <a href="produto/<?=$id?>" class="btn"><i class="fa-solid fa-magnifying-glass"></i> Detalhes</a>
                     </p>
                 </div>
 

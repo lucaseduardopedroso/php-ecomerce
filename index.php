@@ -14,6 +14,9 @@
 
     <link rel="shortcut icon" href="imagens/icone.png">
     <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/lightbox.min.css">
+    
 </head>
 <body>
     <header>
@@ -80,7 +83,10 @@
     ?>
 
     <footer>
-        <p>Desenvolvido por </p>
+        <p>Desenvolvido por Lucas Pedroso</p>
     </footer>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/lightbox.min.js"></script>
 </body>
 </html>

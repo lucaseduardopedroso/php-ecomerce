@@ -52,7 +52,7 @@
                               </p>
                               <p>
                                 <a href='produto/{$id}' class='btn'>
-                                    Detalhes
+                                <i class='fa-solid fa-magnifying-glass'></i> Detalhes
                                 </a>
                               </p>
                         </div>";
