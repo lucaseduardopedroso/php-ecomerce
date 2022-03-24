@@ -8,7 +8,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 	
-                <img src="images/logo.png" alt="">
+                <img src="images/logo.png" alt="Vitrine Adidas">
 
             </a>
 

@@ -1,3 +1,9 @@
+<?php
+    //Iniciar o uso da sessão
+    session_start();
+    //Incluir o arquivo de conexão com o banco
+    require "../config.php";
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -59,7 +65,16 @@
 </head>
 
 <body id="page-top">
+    <?php
+        //Verificar se existe login
+        if(!isset($_SESSION["usuario"])){
+            //Inserir uma tela de login
+            require "paginas/login.php";
 
+        } else{
+            
+        }
+    ?>
 </body>
 
 </html>
