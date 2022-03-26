@@ -66,13 +66,35 @@
 
 <body id="page-top">
     <?php
+        //Incluir o arquivo das funções
+        require "funcoes.php";
         //Verificar se existe login
         if(!isset($_SESSION["usuario"])){
             //Inserir uma tela de login
             require "paginas/login.php";
-
         } else{
+            $page ="paginas/home";
+            if(isset($_GET["param"])){
+                $page = explode("/", $_GET["param"]);
+
+                $pasta = $page[0] ?? NULL;
+                $pagina = $page[1] ?? NULL;
+                $id = $page[2] ?? NULL;
+
+                $page = "{$pasta}/{$pagina}";
+            }
             
+            $page = "{$page}.php";
+            //Header
+            require "header.php";
+
+            if(file_exists($page)){
+                require $page;
+            } else{
+                require "paginas/erro.php";
+            }
+            //Footer
+            require "footer.php";
         }
     ?>
 </body>

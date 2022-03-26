@@ -8,19 +8,33 @@
         //Validar login e senha
         if((empty($login)) or (empty($senha))){
             //Mostrar erro na tela com SweetAlert2
-            ?>
-            <script>
-                Swal.fire({
-                    icon:  'error',
-                    title: 'Oops...',
-                    text: 'Preencha os campos login e senha',
-                }).then((result) => {
-                    history.back();
-                )}
-            </script>
-            <?php
+            mensagemErro("Preencha os campos login e senha.");
+        } 
+        
+        //Selecionar os dados do banco
+        $sql = "select id, nome, login, senha
+                from usuario
+                where login = :login AND ativo = 'S' limit 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":login", $login);
+        $consulta->execute();
+
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+
+        //Verificar se trouxe resultado
+        if(!isset($dados->id)){
+            mensagemErro("Usuário não encontrado ou inativado.");
+        //Verificar se a senha confere com a senha em banco de dados
+        } else if (!password_verify($senha, $dados->senha)){
+            mensagemErro("Senha incorreta.");
         }
-    }
+
+        //Guardar informações na sessão
+        $_SESSION["usuario"] = array("id" => $dados->id, "nome" => $dados->nome, "login" => $dados->login);
+        //Redirecionar para página home
+        echo "<script>location.href='paginas/home'</script>";
+        exit;
+    } // Fim do POST
 ?>
 <div class="login">
     <h1 class="text-center">Efetuar Login</h1>
