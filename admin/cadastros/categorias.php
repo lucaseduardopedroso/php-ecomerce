@@ -3,6 +3,21 @@
     if(!isset($page)){
         exit;
     }
+
+    $nome = NULL;
+
+    if(!empty($id)){
+        $sql = "select * from categoria where id = :id limit 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":id", $id);
+        $consuta->execute();
+
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+
+        $id = $dados->id ?? NULL;
+        $nome = $dados->nome ?? NULL;
+    }
+
 ?>
 
 <div class="card">
@@ -15,67 +30,15 @@
         </div>
     </div>
     <div class="card-body">
-        <form name="formCadastro" method="post" action="salvar/categorias">
+        <form name="formCadastro" method="post" action="salvar/categorias" data-parsley-validate="">
             <label for="id">ID da Categoria:</label>
-            <input type="text" readonly name="id" id="id" class="form-control">
+            <input type="text" readonly name="id" id="id" class="form-control" value="<?=$id?>">
             <label for="nome">Nome da Categoria:</label>
-            <input type="text" name="nome" id="nome" class="form-control" required data-parsley-required-message="Por favor, preencha este campo">
+            <input type="text" name="nome" id="nome" class="form-control" required data-parsley-required-message="Por favor, preencha este campo" value="<?=$nome?>">
             <br>
             <button type="submit" class="btn btn-success">
                 <i class="fas fa-check"></i> Salvar Dados
             </button>
         </form>
-        <table class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>Nome da Categoria:</td>
-                    <td>Opções</td>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    //Selecionar todas categorias
-                    $sql = "select * from categoria
-                            order by nome";
-                    $consulta = $pdo->prepare($sql);
-                    $consulta->execute();
-
-                    while($dados = $consulta->fetch(PDO::FETCH_OBJ)){
-                        ?>
-                        <tr>
-                            <td><?=$dados->id?></td>
-                            <td><?=$dados->nome?></td>
-                            <td width="100px">
-                                <a href="cadastros/categorias/<?=$dados->id?>" title="Editar Registro" class="btn btn-success">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a href="javascript:excluir(<?=$dados->id?>)" title="Excluir Dados" class="btn btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <?php
-                    } //Fim do while
-                ?>
-            </tbody>
-        </table>
     </div>
 </div>
-
-<script>
-    $(".table").dataTable();
-
-    function excluir(id){
-        Swal.fire({
-            title: 'Você deseja realmente excluir este item?',
-            showCancelButton: true,
-            confirmButtonText: 'Excluir',
-            cancelButtonText: 'Cancelar',
-        }).then((result) => {
-            if (result.isConfirmed) {
-               location.href="excluir/categoria/"+id;
-            }
-        })
-    }
-</script>
