@@ -5,7 +5,7 @@
     }
 
     if($_POST){
-        //Recuperar os dados digitas
+        //Recuperar os dados digitados
         $id = trim($_POST["id"] ?? NULL);
         $nome = trim($_POST["nome"] ?? NULL);
 

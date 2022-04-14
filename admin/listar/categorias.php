@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <td>ID</td>
-                    <td>Nome da Categoria:</td>
+                    <td>Nome da Categoria</td>
                     <td>Opções</td>
                 </tr>
             </thead>
@@ -63,7 +63,7 @@
             cancelButtonText: 'Cancelar',
         }).then((result) => {
             if (result.isConfirmed) {
-               location.href="excluir/categoria/"+id;
+               location.href="excluir/categorias/"+id;
             }
         })
     }
