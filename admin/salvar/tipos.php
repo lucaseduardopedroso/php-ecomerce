@@ -7,19 +7,19 @@
     if($_POST){
         //Recuperar os dados digitados
         $id = trim($_POST["id"] ?? NULL);
-        $nome = trim($_POST["nome"] ?? NULL);
+        $tipo = trim($_POST["tipo"] ?? NULL);
 
         //Verificar se o nome não está em branco
-        if(empty($nome)){
-            mensagemErro("Preencha o nome da categoria.");
+        if(empty($tipo)){
+            mensagemErro(("Preencha o tipo de usuário."));
         }
 
-        //Verificar se a categoria já não está cadastrada
-        $sql = "select id from categoria
-                where nome = :nome and id <> :id
+        //Verificar se o tipo não está cadastrado
+        $sql = "select id from tipo
+                where tipo = :tipo and id <> :id
                 limit 1";
         $consulta = $pdo->prepare($sql);
-        $consulta->bindParam(":nome", $nome);
+        $consulta->bindParam(":tipo", $tipo);
         $consulta->bindParam(":id", $id);
         $consulta->execute();
 
@@ -27,28 +27,28 @@
 
         //Verificar se trouxe algum resultado
         if(!empty($dados->id)){
-            mensagemErro("Já existe uma categoria cadastrada com este nome.");
+            mensagemErro("Já existe um tipo cadastrado com este nome.");
         }
-        
+
         //Verificar se irá inserir ou atualizar
         if(empty($id)){
-            $sql = "insert into categoria (nome) values (:nome)";
+            $sql = "insert into tipo (tipo) values (:tipo)";
             $consulta = $pdo->prepare($sql);
-            $consulta->bindParam(":nome", $nome);
+            $consulta->bindParam(":tipo", $tipo);
         } else{
-            $sql = "update categoria 
-                    set nome = :nome 
-                    where id = :id 
+            $sql = "update tipo
+                    set tipo = :tipo
+                    where id = :id
                     limit 1";
             $consulta = $pdo->prepare($sql);
-            $consulta->bindParam(":nome", $nome);
+            $consulta->bindParam(":tipo", $tipo);
             $consulta->bindParam(":id", $id);
         }
 
         if(!$consulta->execute()){
             mensagemErro("Não foi possível salvar os dados.");
         }
-        echo "<script>location.href='listar/categorias';</script>";
+        echo "<script>location.href='listar/tipos';</script>";
         exit;
     }
 

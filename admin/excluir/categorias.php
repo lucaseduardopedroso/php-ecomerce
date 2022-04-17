@@ -31,6 +31,6 @@
         echo "<script>location.href='listar/categorias';</script>";
         exit;
     } else {
-        mensagemErro("Nãoa foi possível excluir.");
+        mensagemErro("Não foi possível excluir.");
     }
 ?>
