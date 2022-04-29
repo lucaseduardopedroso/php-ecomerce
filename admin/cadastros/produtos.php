@@ -87,6 +87,7 @@
 
     <script>
         $(document).ready(function(){
+            //Adiciona a máscara para o valor BRL 
             $('.valor').maskMoney({thousands:".", decimal:","});
             $('.texto').summernote({
                 height: 200
