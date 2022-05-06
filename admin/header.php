@@ -38,6 +38,7 @@
                         <a class="collapse-item" href="cadastros/categorias"><i class="fas fa-tags"></i>⠀Categorias</a>
                         <a class="collapse-item" href="cadastros/produtos"><i class="fas fa-gift"></i>⠀Produtos</a>
                         <a class="collapse-item" href="cadastros/tipos"><i class="fas fa-users"></i>⠀Tipo de Usuário</a>
+                        <a class="collapse-item" href="cadastros/usuarios"><i class="fas fa-user-plus"></i>⠀Usuário</a>
                     </div>
                 </div>
             </li>
