@@ -45,6 +45,7 @@
         } 
         
         else if(empty($senha)){
+            //Fazer update sem a senha
             $sql = "update usuario set nome = :nome, email = :email,
             login = :login, ativo = :ativo where id = :id
             limit 1";
@@ -57,6 +58,7 @@
         }
 
         else{
+            //Fazer update com a senha 
             $senha = password_hash($senha, PASSWORD_DEFAULT);
 
             $sql = "update usuario set nome = :nome, email = :email,
