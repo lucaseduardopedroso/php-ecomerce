@@ -57,8 +57,12 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="relatorios/produtos"><i class="fas fa-shopping-cart"></i> Produtos</a>
-                        <a class="collapse-item" href="relatorio/usuarios"><i class="fas fa-users"></i> Usuários</a>
+                        <a class="collapse-item" href="relatorios/produtos"><i class="fas fa-shopping-cart"></i>⠀Produtos</a>
+                        <a class="collapse-item" href="relatorios/usuarios"><i class="fas fa-users"></i>⠀Usuários</a>
+                        <a class="collapse-item"
+                        href="relatorios/log">
+                        <i class="fas fa-file"></i>⠀Log    
+                        </a>
                     </div>
                 </div>
             </li>

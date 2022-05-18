@@ -10,4 +10,10 @@
         echo "<p>Erro ao tentar conectar.</p>";
         echo $e->getMessaage();
     }
+
+    function formatarValor($valor){
+        //10.000,00 -> 10,000.00
+        $valor = str_replace(".","", $valor);
+        return str_replace(",",".", $valor);
+    }
 ?>

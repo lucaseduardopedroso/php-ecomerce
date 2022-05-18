@@ -83,7 +83,7 @@
             cancelButtonText: 'Cancelar',
         }).then((result) => {
             if(result.isConfirmed){
-                location.href="excluir/tipos/"+id;
+                location.href="excluir/usuarios/"+id;
             }
         })
     }

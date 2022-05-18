@@ -74,6 +74,10 @@
             require "paginas/login.php";
         } else{
             $page ="paginas/home";
+
+            $pagina = $pasta = "dashboard";
+            $id = NULL;
+
             if(isset($_GET["param"])){
                 $page = explode("/", $_GET["param"]);
 
@@ -93,6 +97,29 @@
             } else{
                 require "paginas/erro.php";
             }
+
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $usuario = $_SESSION["usuario"]["id"];
+            if(!empty($id) && ($pasta == "cadastros")){
+                $pasta = "Editar - {$id}";
+            } else if (!empty($id) && ($pasta == "excluir")){
+                $pasta = "Excluir - {$id}";
+            } else if (!empty($id) && ($pasta == "listar")){
+                $pasta = "Listar - {$id}";
+            } else if (!empty($id) && ($pasta == "salvar")){
+                $pasta = "Salvar - {$id}";
+            }
+
+            $sql = "insert into log (usuario_id, tabela, acao, data, ip) values (:usuario_id, :tabela, :acao, NOW(), :ip)";
+            $consulta = $pdo->prepare($sql);
+            $consulta->bindParam(":usuario_id", $usuario);
+            $consulta->bindParam(":tabela", $pagina);
+            $consulta->bindParam(":acao", $pasta);
+            $consulta->bindParam(":ip", $ip);
+            
+            if(!$consulta->execute()) echo "<p>Erro no Log</p>";
+
+
             //Footer
             require "footer.php";
         }
